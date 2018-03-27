@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Юдин](https://up.htmlacademy.ru/javascript/13/user/103487).
-* Наставник: `Неизвестно`.
+* Наставник: [Наталья Ёркина](https://up.htmlacademy.ru/javascript/13/user/50014).
 
 ---
 
