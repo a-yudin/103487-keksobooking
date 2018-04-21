@@ -35,7 +35,7 @@ var Y_COORDINATE_BEGIN = 150;
 var Y_COORDINATE_END = 500;
 var ROOMS_NUMBER = 5;
 var GUESTS_FOR_ROOM = 2;
-var ADVERTISEMENTS_NUMBER = 8;
+// var ADVERTISEMENTS_NUMBER = 8;
 var xCoordinate = 0;
 var yCoordinate = 0;
 var i = 0;
@@ -127,7 +127,7 @@ var generateAdvertisements = function () {
 
 // shuffleArray(AVATAR_LINKS);
 generateAdvertisements();
-console.log(advertisements);
+// console.log(advertisements);
 // console.log(generatePlace());
 // console.log(AVATAR_LINKS);
 // console.log(TITLES);
