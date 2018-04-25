@@ -93,10 +93,10 @@ var createMapPin = function (index) {
   return mapPinElement;
 };
 
-var renderMapPins = function () {
+var renderMapPins = function (currentArray) {
   var fragment = document.createDocumentFragment();
 
-  advertisements.forEach(function (advertisement, i) {
+  currentArray.forEach(function (element, i) {
     fragment.appendChild(createMapPin(i));
   });
 
@@ -118,10 +118,30 @@ var generatePhotoElements = function (elementsArray) {
   return fragment;
 };
 
+var deleteFeatureElements = function (blockElements) {
+
+  while (blockElements.firstChild) {
+    blockElements.removeChild(blockElements.firstChild);
+  }
+};
+
+var createFeatureElements = function (featuresArray) {
+  var fragment = document.createDocumentFragment();
+
+  for (var i = 0; i < featuresArray.length; i++) {
+    var liElement = document.createElement('li');
+    liElement.classList.add('popup__feature', 'popup__feature--' + featuresArray[i]);
+    fragment.appendChild(liElement);
+  }
+
+  return fragment;
+};
+
+
 var insertAdvertisement = function (advertisement) {
   var advertisementElement = advertisementTemplate.cloneNode(true);
   var photoBlock = advertisementElement.querySelector('.popup__photos');
-  var photo = photoBlock.querySelector('img');
+  var featuresBlock = advertisementElement.querySelector('.popup__features');
 
   advertisementElement.querySelector('.popup__title').textContent = advertisement.offer.title;
   advertisementElement.querySelector('.popup__text--address').textContent = advertisement.offer.address;
@@ -135,12 +155,14 @@ var insertAdvertisement = function (advertisement) {
       .textContent = 'Заезд после ' + advertisement.offer.checkin + ', выезд до ' + advertisement.offer.checkout;
   advertisementElement.querySelector('.popup__description').textContent = advertisement.offer.description;
   advertisementElement.querySelector('.popup__avatar').src = advertisement.author.avatar;
-  photoBlock.replaceChild(generatePhotoElements(advertisement.offer.photos), photo);
+  photoBlock.appendChild(generatePhotoElements(advertisement.offer.photos));
+  deleteFeatureElements(featuresBlock);
+  featuresBlock.appendChild(createFeatureElements(advertisement.offer.features));
 
   mapElement.insertBefore(advertisementElement, mapElement.querySelector('.map__filters-container'));
 };
 
 generateAdvertisements();
 mapElement.classList.remove('map--faded');
-renderMapPins();
+renderMapPins(advertisements);
 insertAdvertisement(advertisements[0]);
