@@ -119,7 +119,6 @@ var generatePhotoElements = function (elementsArray) {
 };
 
 var deleteFeatureElements = function (blockElements) {
-
   while (blockElements.firstChild) {
     blockElements.removeChild(blockElements.firstChild);
   }
@@ -128,11 +127,11 @@ var deleteFeatureElements = function (blockElements) {
 var createFeatureElements = function (featuresArray) {
   var fragment = document.createDocumentFragment();
 
-  for (var i = 0; i < featuresArray.length; i++) {
-    var liElement = document.createElement('li');
-    liElement.classList.add('popup__feature', 'popup__feature--' + featuresArray[i]);
-    fragment.appendChild(liElement);
-  }
+  featuresArray.forEach(function (featuresItem) {
+    var li = document.createElement('li');
+    li.classList.add('popup__feature', 'popup__feature--' + featuresItem);
+    fragment.appendChild(li);
+  });
 
   return fragment;
 };
